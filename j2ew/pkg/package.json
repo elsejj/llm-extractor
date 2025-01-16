@@ -1,0 +1,20 @@
+{
+  "name": "j2ew",
+  "type": "module",
+  "collaborators": [
+    "LiJia <lijia.c@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "j2ew_bg.wasm",
+    "j2ew.js",
+    "j2ew_bg.js",
+    "j2ew.d.ts"
+  ],
+  "main": "j2ew.js",
+  "types": "j2ew.d.ts",
+  "sideEffects": [
+    "./j2ew.js",
+    "./snippets/*"
+  ]
+}
