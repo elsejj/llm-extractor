@@ -1,0 +1,110 @@
+{
+  "appName": {
+    "message": "网页数据结构化"
+  },
+  "appDesc": {
+    "message" : "从网页中提取数据到你定义的JSON结构中"
+  },
+  "currentPage": {
+    "message": "当前页面"
+  },
+  "extractData": {
+    "message": "提取数据"
+  },
+  "editDataStruct" : {
+    "message": "编辑数据结构"
+  },
+  "saveDataStruct": {
+    "message": "保存数据定义"
+  },
+  "export": {
+    "message" : "导出"
+  },
+  "settings": {
+    "message" : "设置"
+  },
+  "backendService": {
+    "message" : "投递目标"
+  },
+  "backendServicePlaceholder": {
+    "message" : "提取后可发送到的服务地址"
+  },
+  "rootSelector": {
+    "message" : "根标签选择器"
+  },
+  "rootSelectorPlaceholder": {
+    "message" : "页面主要内容的选择器"
+  },
+  "llmAddress": {
+    "message" : "大模型地址"
+  },
+  "llmKey" : {
+    "message" : "大模型密钥"
+  },
+  "llmModel" : {
+    "message" : "大模型模型名"
+  },
+  "llmProvider" : {
+    "message" : "大模型服务商"
+  },
+  "save" : {
+    "message" : "保存"
+  },
+  "saveFailed" : {
+    "message" : "保存失败"
+  },
+  "clearAllData" : {
+    "message" : "清除所有数据"
+  },
+  "json": {
+    "message" : "JSON"
+  },
+  "table" : {
+    "message" : "表格"
+  },
+  "copy" : {
+    "message" : "复制"
+  },
+  "connectWebFailed" : {
+    "message" : "提取数据失败, 请刷新网页后重试"
+  },
+  "extractStarting" : {
+    "message" : "开始提取数据, 请稍后..."
+  },
+  "submitStarting" : {
+    "message" : "提取数据完成, 开始提交..."
+  },
+  "inputTokens": {
+    "message" : "输入"
+  },
+  "outputTokens": {
+    "message" : "输出"
+  },
+  "timeUsed" : {
+    "message" : "耗时"
+  },
+  "extractDone" : {
+    "message" : "提取数据完成"
+  },
+  "extractFailed" : {
+    "message" : "提取数据失败"
+  },
+  "copySuccess" : {
+    "message" : "复制成功"
+  },
+  "copyFailed" : {
+    "message" : "复制失败"
+  },
+  "exportSuccess" : {
+    "message" : "导出成功"
+  },
+  "exportFailed" : {
+    "message" : "导出失败"
+  },
+  "clearSuccess" : {
+    "message" : "清除成功"
+  },
+  "defaultPrompt" : {
+    "message" : "type Data = {\n  // 在这里定义你需要的字段\n\n}"
+  }
+}

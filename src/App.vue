@@ -1,68 +1,66 @@
 
 <template>
   <div>
-    当前页面: {{ currentURL.url }}
+    {{ _T("currentPage") }}: {{ currentURL.url }}
   </div>
   <div class="w-full h-12 flex items-center gap-1 p-2">
     <button 
       type="button" class="bg-blue-500 text-white"
       @click="onExtractData"
     >
-      提取数据
+      {{ _T('extractData') }}
     </button>
     <button 
       type="button"
       @click="onPromptAction"
     >
-      {{ appMode === AppMode.Edit ? '保存结构定义' : '编辑结构定义' }}
+      {{ appMode === AppMode.Edit ? _T('saveDataStruct') : _T('editDataStruct') }}
     </button>
     <span class="flex-auto"></span>
     <button 
       type="button"
-      @click="exportData"
-    >
-    导出
-    </button>
-    <button 
-      type="button"
       @click="appMode = AppMode.Setting"
     >
-    设置
+    {{ _T('Settings') }}
     </button>
   </div>
   <div v-if="appMode === AppMode.Edit" class="w-full p-2">
-    <textarea v-model="urlPrompt.prompt" class="w-full h-96 border-2 p-2" :placeholder="DEFAULT_EXTRACT_PROMPT"></textarea>
+    <textarea v-model="urlPrompt.prompt" class="w-full h-96 border-2 p-2" :placeholder="_T('defaultPrompt')"></textarea>
     <div class="flex items-center gap-1">
-      <label class="w-24">投递目标</label>
-      <input v-model="urlPrompt.sendTo" type="text" class="flex-auto border- p-1" placeholder="提取后可发送到的服务地址"/>
+      <label class="w-24">{{ _T("backendService") }}</label>
+      <input v-model="urlPrompt.sendTo" type="text" class="flex-auto border-2 p-1" :placeholder="_T('backendServicePlaceholder')"/>
     </div>
     <div class="flex items-center gap-1">
-      <label class="w-24">标签选择器</label>
-      <input v-model="urlPrompt.selector" type="text" class="flex-auto border- p-1" placeholder="页面主要内容的选择器"/>
+      <label class="w-24">{{ _T("rootSelector") }}</label>
+      <input v-model="urlPrompt.selector" type="text" class="flex-auto border-2 p-1" :placeholder="_T('rootSelectorPlaceholder')"/>
     </div>
   </div>
+
   <div v-if="appMode === AppMode.Setting" class="w-full p2 flex flex-col gap-2 p-2">
     <div class="flex items-center gap-1">
-      <label class="w-24">大模型地址</label>
-      <input v-model="llmSetting.url" type="text" class="flex-auto border-2 p-1" />
+      <label class="w-24">{{ _T('llmAddress') }}</label>
+      <input v-model="llmSetting.url" type="text" class="flex-auto border-2 p-1" placeholder="https://api.openai.com/v1/" />
     </div>
     <div class="flex items-center gap-1">
-      <label class="w-24">大模型密钥</label>
-      <input v-model="llmSetting.key" type="text" class="flex-auto border-2 p-1" />
+      <label class="w-24">{{ _T('llmKey') }}</label>
+      <input v-model="llmSetting.key" type="text" class="flex-auto border-2 p-1" placeholder="sk_xxxxxx"/>
     </div>
     <div class="flex items-center gap-1">
-      <label class="w-24">大模型模型名</label>
-      <input v-model="llmSetting.model" type="text" class="flex-auto border-2 p-1" />
+      <label class="w-24">{{ _T('llmModel') }}</label>
+      <input v-model="llmSetting.model" type="text" class="flex-auto border-2 p-1" placeholder="gpt-4o-mini"/>
     </div>
     <div class="flex items-center gap-1">
-      <label class="w-24">大模型服务商</label>
-      <input v-model="llmSetting.provider" type="text" class="flex-auto border-2 p-1" />
+      <label class="w-24">{{ _T('llmProvider') }}</label>
+      <input v-model="llmSetting.provider" type="text" class="flex-auto border-2 p-1" placeholder="openai"/>
     </div>
     <div class="flex justify-end">
-      <button type="button" @click="appMode = AppMode.Extract">保存</button>
+      <button type="button" @click="appMode = AppMode.Extract">{{ _T('save') }}</button>
     </div>
     <div class="flex items-center gap-1">
-      <button type="button" class=" text-red-500 w-full" @click="onClearDatas">清除所有数据</button>
+      <button type="button" @click="exportData" class="w-full" > {{ _T('Export') }} </button>
+    </div>
+    <div class="flex items-center gap-1">
+      <button type="button" class=" text-red-500 w-full" @click="onClearDatas">{{ _T('clearAllData') }}</button>
     </div>
   </div>
   <div v-if="appMode !== AppMode.Setting" class="w-full p-2">
@@ -70,10 +68,10 @@
     <div class="flex justify-end items-center gap-2" v-if="contentData.length > 0">
       <div>
         <input type="checkbox" id="viewAsTable" v-model="viewAsTable" @click="onSwitchViewFormat" />
-        <label for="viewAsTable">{{ viewAsTable ? 'JSON' : '表格' }}</label>
+        <label for="viewAsTable">{{ viewAsTable ? _T('json') : _T('table') }}</label>
       </div>
       <button type="button" @click="exportExcel">Excel</button>
-      <button type="button" @click="copyResult">复制</button>
+      <button type="button" @click="copyResult">{{ _T('copy') }}</button>
     </div>
     <div v-if="viewAsTable" id="jsonTableHolder">
     </div>
@@ -108,14 +106,22 @@ const appLog = ref<string>('');
 const urlPrompt = ref<UrlPrompt>({ prompt: ''});
 const appMode = ref<AppMode>(AppMode.Extract);
 const llmSetting = ref<LLMSetting>({
-  url: 'https://api.openai.com/v1',
-  key: 'sk_xxxxxx',
-  model: 'gpt-4o-mini',
-  provider: 'openai',
+  url: '',
+  key: '',
+  model: '',
+  provider: '',
 });
 const currentURL = ref<CurrentURL>({href: '', url: '', dataUrl: '', title: ''});
 const viewAsTable = ref<boolean>(false);
 
+
+function _T(key: string) : string {
+  if (chrome.i18n) {
+    return chrome.i18n.getMessage(key);
+  }else{
+    return key;
+  }
+}
 
 async function loadSetting() {
   const setting = await loadAppSetting();
@@ -169,7 +175,7 @@ async function onExtractData() {
   try{
     await sendContentEvent(event);
   }catch(e){
-    appLog.value = `提取数据失败, 请刷新网页后重试`;
+    appLog.value = _T('connectWebFailed');
   }
 }
 
@@ -196,7 +202,7 @@ function contentEventHandle(event: LEvent, sender: chrome.runtime.MessageSender,
 }
 
 async function onContentChanged(content:string) {
-  appLog.value = "开始提取数据, 请稍后...";
+  appLog.value = _T('extractStarting');
   contentData.value = '';
   viewAsTable.value = false;
 
@@ -239,7 +245,7 @@ async function onContentChanged(content:string) {
     }
     const body = JSON.stringify(bodyObj);
     if (urlPrompt.value.sendTo) {
-      appLog.value = `提取数据完成, 开始提交...`;
+      appLog.value = _T('submitStarting');
       await fetch(urlPrompt.value.sendTo, {
         method: 'POST',
         headers: {
@@ -251,12 +257,12 @@ async function onContentChanged(content:string) {
     await saveUrlResult(currentURL.value.dataUrl, body);
     let usageText = ''
     if (usage.prompt_tokens) {
-      usageText = `输入:${usage.prompt_tokens} 输出:${usage.completion_tokens} 耗时:${usage.time_used}`;
+      usageText = `${_T('inputTokens')}:${usage.prompt_tokens} ${_T('outputTokens')}:${usage.completion_tokens} ${_T('timeUsed')}:${usage.time_used}`;
     }
-    appLog.value = `提取数据完成. ${usageText}`;
+    appLog.value = `${_T('extractDone')}. ${usageText}`;
   }
   catch (e) {
-    appLog.value = `提取数据失败: ${e}`;
+    appLog.value = `${_T('extractFailed')}: ${e}`;
   }
 }
 
@@ -319,7 +325,7 @@ async function exportData() {
     const fileHandle = await window.showSaveFilePicker(opts);
     const file = await fileHandle.getFile();
     if (!file) {
-      appLog.value = '保存失败';
+      appLog.value = _T('saveFailed');
       return;
     }
     const isJSON = file.name.endsWith('.json');
@@ -377,9 +383,9 @@ async function copyResult() {
     }else{
       await navigator.clipboard.writeText(contentData.value);
     }
-    timeoutLog('复制成功!');
+    timeoutLog(_T('copySuccess'));
   } catch (e) {
-    timeoutLog(`复制失败: ${e}`);
+    timeoutLog(`${_T('exportFailed')}: ${e}`);
   }
 }
 
@@ -404,15 +410,15 @@ async function exportExcel() {
 
     await writable.write(data);
     await writable.close();
-    timeoutLog('导出成功!');
+    timeoutLog(_T('exportSuccess'));
   }catch(e){
-    timeoutLog(`导出失败: ${e}`);
+    timeoutLog(`${_T('exportFailed')}: ${e}`);
   }
 }
 
 async function onClearDatas() {
   await clearDatas();
-  alert('清除成功');
+  alert(_T('clearSuccess'));
 }
 
 async function onSwitchViewFormat() {

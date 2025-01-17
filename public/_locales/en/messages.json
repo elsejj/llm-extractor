@@ -1,0 +1,110 @@
+{
+  "appName": {
+    "message": "Web to JSON"
+  },
+  "appDesc": {
+    "message" : "extract web page to your defined JSON struct"
+  },
+  "currentPage": {
+    "message": "Current Page"
+  },
+  "extractData": {
+    "message": "Extract"
+  },
+  "editDataStruct" : {
+    "message": "Edit Data Struct"
+  },
+  "saveDataStruct": {
+    "message": "Save Data Struct"
+  },
+  "export": {
+    "message" : "Export"
+  },
+  "settings": {
+    "message" : "Settings"
+  },
+  "backendService": {
+    "message" : "Backend Service"
+  },
+  "backendServicePlaceholder": {
+    "message" : "the backend service URL to submit extraction result"
+  },
+  "rootSelector": {
+    "message" : "Root Selector"
+  },
+  "rootSelectorPlaceholder": {
+    "message" : "the root node's selector"
+  },
+  "llmAddress": {
+    "message" : "LLM URL"
+  },
+  "llmKey" : {
+    "message" : "LLM Key"
+  },
+  "llmModel" : {
+    "message" : "LLM Model"
+  },
+  "llmProvider" : {
+    "message" : "LLM Provider"
+  },
+  "save" : {
+    "message" : "Save"
+  },
+  "saveFailed" : {
+    "message" : "Save Failed"
+  },
+  "clearAllData" : {
+    "message" : "Clear All"
+  },
+  "json": {
+    "message" : "JSON"
+  },
+  "table" : {
+    "message" : "Table"
+  },
+  "copy" : {
+    "message" : "Copy"
+  },
+  "connectWebFailed" : {
+    "message" : "Extract failed, please refresh the web page and try again."
+  },
+  "extractStarting" : {
+    "message" : "Please wait for extraction to finish..."
+  },
+  "submitStarting" : {
+    "message" : "Extract done, submit to backend...."
+  },
+  "inputTokens": {
+    "message" : "Input Tokens"
+  },
+  "outputTokens": {
+    "message" : "Output Tokens"
+  },
+  "timeUsed" : {
+    "message" : "Time Used"
+  },
+  "extractDone" : {
+    "message" : "Extract Done"
+  },
+  "extractFailed" : {
+    "message" : "Extract failed"
+  },
+  "copySuccess" : {
+    "message" : "Copy done"
+  },
+  "copyFailed" : {
+    "message" : "Copy failed"
+  },
+  "exportSuccess" : {
+    "message" : "Export done"
+  },
+  "exportFailed" : {
+    "message" : "Export failed"
+  },
+  "clearSuccess" : {
+    "message" : "Clean done"
+  },
+  "defaultPrompt" : {
+    "message" : "type Data = {\n  // please define fields your want here\n\n}"
+  }
+}
